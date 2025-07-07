@@ -5,7 +5,7 @@ const app = express();
 app.use(express.json());
 
 app.post('/api/generate/content', async (req, res) => {
-  const text = req.text;
+  const text = req[0].text;
   console.log("text:>", text);
   
   try {
@@ -13,7 +13,7 @@ app.post('/api/generate/content', async (req, res) => {
       model: 'gpt-4',
       messages: [
         { role: 'system', content: 'คุณคือผู้ช่วยร่างเอกสารราชการ' },
-        { role: 'user', content: text }
+        { role: 'user', content: text || "" }
       ]
     }, {
       headers: {
