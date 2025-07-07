@@ -24,7 +24,7 @@ app.post('/api/generate/content', async (req, res) => {
     res.json({ content });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'เกิดข้อผิดพลาดในการติดต่อ GPT' });
+    res.status(500).json({ error: 'เกิดข้อผิดพลาดในการติดต่อ GPT', detail: err });
   }
 });
 
