@@ -5,15 +5,17 @@ const app = express();
 app.use(express.json());
 
 app.post('/api/generate/content', async (req, res) => {
-  const text = req.body;
-  console.log("text:>", req.body);
+  // console.log("text:>", req.body.text);
+  
+  const text = JSON.parse(req.body);
+  console.log("text:>", text.text);
   
   try {
     const response = await axios.post('https://api.openai.com/v1/chat/completions', {
       model: 'gpt-4',
       messages: [
         { role: 'system', content: 'คุณคือผู้ช่วยร่างเอกสารราชการ' },
-        { role: 'user', content: text || "" }
+        { role: 'user', content: text.text || "" }
       ]
     }, {
       headers: {
