@@ -20,7 +20,7 @@ app.post('/api/generate/content', async (req, res) => {
       }
     });
 
-    const content = response.data.choices[0].message.content;
+    const content = response.choices[0].message.content;
     res.json({ content });
   } catch (err) {
     console.error(err);
