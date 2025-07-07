@@ -6,7 +6,7 @@ app.use(express.json());
 
 app.post('/api/generate/content', async (req, res) => {
   const text = req.body;
-  console.log("text:>", text);
+  console.log("text:>", req.body);
   
   try {
     const response = await axios.post('https://api.openai.com/v1/chat/completions', {
