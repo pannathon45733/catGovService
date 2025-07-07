@@ -23,7 +23,8 @@ app.post('/api/generate/content', async (req, res) => {
         'Content-Type': 'application/json'
       }
     });
-
+    console.log("response:>", response);
+    
     const content = response.choices[0].message.content;
     res.json({ content });
   } catch (err) {
