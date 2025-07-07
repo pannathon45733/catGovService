@@ -5,7 +5,7 @@ const app = express();
 app.use(express.json());
 
 app.post('/api/generate/content', async (req, res) => {
-  const text = req[0].text;
+  const text = req.body;
   console.log("text:>", text);
   
   try {
