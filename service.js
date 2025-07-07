@@ -5,7 +5,7 @@ const app = express();
 app.use(express.json());
 
 app.post('/api/generate/content', async (req, res) => {
-  const { input } = req.body;
+  const { input } = req.body.text;
   try {
     const response = await axios.post('https://api.openai.com/v1/chat/completions', {
       model: 'gpt-4',
