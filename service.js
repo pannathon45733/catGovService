@@ -11,8 +11,8 @@ app.post('/api/generate/content', async (req, res) => {
   console.log("text:>", text.text);
   
   try {
-    const response = await axios.post('https://api.openai.com/v1/chat/completions', {
-      model: 'gpt-4',
+    const response = await axios.post('https://ai.jkomala.com/v1/chat/completions', {
+      model: 'openthaigpt/openthaigpt-r1-32b',
       messages: [
         { role: 'system', content: 'คุณคือผู้ช่วยร่างเอกสารราชการ' },
         { role: 'user', content: text.text || "" }
