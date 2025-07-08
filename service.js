@@ -2,17 +2,21 @@
 const express = require('express');
 const axios = require('axios');
 const app = express();
+const fs = require('fs');
+
+// อ่านไฟล์ตัวอย่าง
+const text = fs.readFileSync('promptengine.txt', 'utf8');
 app.use(express.json());
 
 app.post('/api/generate/content', async (req, res) => {
   // รับข้อความจาก body
-  const text = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+  const Prompt  = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
   try {
     const response = await axios.post(process.env.API, {
       model: process.env.Model || 'gpt-4', // ใช้โมเดลที่กำหนดใน environment variable หรือ gpt-4 เป็นค่าเริ่มต้น
       messages: [
-        { role: 'system', content: 'คุณคือผู้ช่วยร่างเอกสารราชการ' },
-        { role: 'developer', content: 'You are a helpful assistant.' },
+        { role: 'system', content: Prompt },
+        // { role: 'developer', content: 'You are a helpful assistant.' },
         { role: 'user', content: text.text || "" }
       ]
     }, {
