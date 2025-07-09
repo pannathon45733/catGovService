@@ -3,10 +3,12 @@ const express = require('express');
 const axios = require('axios');
 const app = express();
 const fs = require('fs');
+const cors = require("cors");
 
 // อ่านไฟล์ตัวอย่าง
 const Prompt = fs.readFileSync('promptengine.txt', 'utf8');
 app.use(express.json());
+app.use(cors());
 
 app.post('/api/generate/content', async (req, res) => {
   // รับข้อความจาก body
